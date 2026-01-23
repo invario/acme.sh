@@ -134,7 +134,7 @@ _get_zone() {
   domain=$(echo "$1" | sed 's/\.$//')
   _debug "Finding zone for: $domain"
 
-  i=2
+  i=1
   p=1
   while true; do
     h=$(printf "%s" "$domain" | cut -d . -f "$i"-100)
