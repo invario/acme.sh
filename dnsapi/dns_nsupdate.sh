@@ -39,36 +39,36 @@ dns_nsupdate_add() {
   [ -n "$DEBUG" ] && [ "$DEBUG" -ge "$DEBUG_LEVEL_2" ] && nsdebug="-D"
   if [ -z "${NSUPDATE_ZONE}" ]; then
     #shellcheck disable=SC2086
-	if [ -z "${NSUPDATE_KEY}" ]; then
-		nsupdate $nsdebug $NSUPDATE_OPT <<EOF
+    if [ -z "${NSUPDATE_KEY}" ]; then
+        nsupdate $nsdebug $NSUPDATE_OPT <<EOF
 server ${NSUPDATE_SERVER}  ${NSUPDATE_SERVER_PORT}
 update add ${fulldomain}. 60 in txt "${txtvalue}"
 send
 EOF
-	else
-		nsupdate -k "${NSUPDATE_KEY}" $nsdebug $NSUPDATE_OPT <<EOF
+    else
+        nsupdate -k "${NSUPDATE_KEY}" $nsdebug $NSUPDATE_OPT <<EOF
 server ${NSUPDATE_SERVER}  ${NSUPDATE_SERVER_PORT}
 update add ${fulldomain}. 60 in txt "${txtvalue}"
 send
 EOF
-	fi
+    fi
   else
     #shellcheck disable=SC2086
-	if [ -z "${NSUPDATE_KEY}" ]; then
-		nsupdate $nsdebug $NSUPDATE_OPT <<EOF
+    if [ -z "${NSUPDATE_KEY}" ]; then
+        nsupdate $nsdebug $NSUPDATE_OPT <<EOF
 server ${NSUPDATE_SERVER}  ${NSUPDATE_SERVER_PORT}
 zone ${NSUPDATE_ZONE}.
 update add ${fulldomain}. 60 in txt "${txtvalue}"
 send
 EOF
-	else
-		nsupdate -k "${NSUPDATE_KEY}" $nsdebug $NSUPDATE_OPT <<EOF
+    else
+        nsupdate -k "${NSUPDATE_KEY}" $nsdebug $NSUPDATE_OPT <<EOF
 server ${NSUPDATE_SERVER}  ${NSUPDATE_SERVER_PORT}
 zone ${NSUPDATE_ZONE}.
 update add ${fulldomain}. 60 in txt "${txtvalue}"
 send
 EOF
-	fi
+    fi
   fi
   if [ $? -ne 0 ]; then
     _err "error updating domain"
@@ -96,36 +96,36 @@ dns_nsupdate_rm() {
   [ -n "$DEBUG" ] && [ "$DEBUG" -ge "$DEBUG_LEVEL_2" ] && nsdebug="-D"
   if [ -z "${NSUPDATE_ZONE}" ]; then
     #shellcheck disable=SC2086
-	if [ -z "${NSUPDATE_KEY}" ]; then
-		nsupdate $nsdebug $NSUPDATE_OPT <<EOF
+    if [ -z "${NSUPDATE_KEY}" ]; then
+        nsupdate $nsdebug $NSUPDATE_OPT <<EOF
 server ${NSUPDATE_SERVER}  ${NSUPDATE_SERVER_PORT}
 update delete ${fulldomain}. txt
 send
 EOF
-	else
-		nsupdate -k "${NSUPDATE_KEY}" $nsdebug $NSUPDATE_OPT <<EOF
+    else
+        nsupdate -k "${NSUPDATE_KEY}" $nsdebug $NSUPDATE_OPT <<EOF
 server ${NSUPDATE_SERVER}  ${NSUPDATE_SERVER_PORT}
 update delete ${fulldomain}. txt
 send
 EOF
-	fi
+    fi
   else
     #shellcheck disable=SC2086
-	if [ -z "${NSUPDATE_KEY}" ]; then
-		nsupdate $nsdebug $NSUPDATE_OPT <<EOF
+    if [ -z "${NSUPDATE_KEY}" ]; then
+        nsupdate $nsdebug $NSUPDATE_OPT <<EOF
 server ${NSUPDATE_SERVER}  ${NSUPDATE_SERVER_PORT}
 zone ${NSUPDATE_ZONE}.
 update delete ${fulldomain}. txt
 send
 EOF
-	else
-		nsupdate -k "${NSUPDATE_KEY}" $nsdebug $NSUPDATE_OPT <<EOF
+    else
+        nsupdate -k "${NSUPDATE_KEY}" $nsdebug $NSUPDATE_OPT <<EOF
 server ${NSUPDATE_SERVER}  ${NSUPDATE_SERVER_PORT}
 zone ${NSUPDATE_ZONE}.
 update delete ${fulldomain}. txt
 send
 EOF
-	fi
+    fi
   fi
   if [ $? -ne 0 ]; then
     _err "error updating domain"
