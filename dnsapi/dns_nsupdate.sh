@@ -98,9 +98,9 @@ dns_nsupdate_rm() {
   [ -n "${NSUPDATE_SERVER}" ] || NSUPDATE_SERVER="localhost"
   [ -n "${NSUPDATE_SERVER_PORT}" ] || NSUPDATE_SERVER_PORT=53
   [ -n "${NSUPDATE_KEY}" ] || NSUPDATE_KEY=""
-  
+
   NSUPDATE_SERVER_LIST=$(printf "%s" "$NSUPDATE_SERVER" | tr ',' ' ')
-  
+
   _info "removing ${fulldomain}. txt"
   [ -n "$DEBUG" ] && [ "$DEBUG" -ge "$DEBUG_LEVEL_1" ] && nsdebug="-d"
   [ -n "$DEBUG" ] && [ "$DEBUG" -ge "$DEBUG_LEVEL_2" ] && nsdebug="-D"
