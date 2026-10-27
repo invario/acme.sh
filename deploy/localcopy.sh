@@ -123,8 +123,13 @@ localcopy_deploy() {
   fi
 
   if [ "$DEPLOY_LOCALCOPY_PFX" ]; then
+    if [ ! -f "$_cpfx" ]; then
+      _err "PFX file $_cpfx not found, run --to-pkcs12 first."
+      return 1
+    fi
     _info "Copying PFX"
     _debug "Copying $_cpfx to $DEPLOY_LOCALCOPY_PFX"
+
     if ! [ -f "$DEPLOY_LOCALCOPY_PFX" ]; then
       touch "$DEPLOY_LOCALCOPY_PFX" || return 1
       chmod 600 "$DEPLOY_LOCALCOPY_PFX"
